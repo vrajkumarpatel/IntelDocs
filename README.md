@@ -4,6 +4,17 @@ A document intelligence platform: upload contracts, invoices, or policies (scann
 
 This exists to demonstrate serious LLM/RAG infrastructure, not another "chat with your PDF" wrapper. The evaluation pipeline is the point: it auto-generates test questions from real ingested documents, runs them through the actual retrieval and answer pipeline, and reports real hit-rate/MRR/faithfulness numbers you can compare across retrieval configurations.
 
+## Screenshots
+
+![Documents](docs/screenshots/documents.png)
+*Ingestion pipeline: uploaded documents move from processing to ready with real page counts, versioning, and status tracking.*
+
+![Evaluation](docs/screenshots/evaluation-setup.png)
+*The differentiator: configuring an evaluation run against real ingested documents, choosing the retrieval strategy to test (vector-only, hybrid, or hybrid+rerank). Captured mid-setup rather than with a completed run — this environment doesn't have a live Groq key wired in, so the actual hit-rate/MRR/faithfulness numbers weren't exercised for this capture.*
+
+![Ask](docs/screenshots/ask.png)
+*Cited Q&A: asking a question scoped to the ingested document corpus, with answers designed to link back to the source page.*
+
 ## Problem
 
 Most "RAG chatbot" demos never answer the question that actually matters to a technical buyer: *how do you know it's retrieving the right thing and not hallucinating?* Teams building document Q&A systems typically ship on vibes — a few manual spot-checks — because building a real evaluation harness is more work than the RAG pipeline itself.
