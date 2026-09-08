@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+
+@theme {
+  /* -- surfaces -- */
+  --color-ink: #101826;
+  --color-ink-soft: #182233;
+  --color-ink-line: #2a3547;
+  --color-paper: #eef1f6;
+  --color-surface: #ffffff;
+  --color-border: #dbe1ea;
+  --color-border-soft: #e7ebf1;
+
+  /* -- text -- */
+  --color-text: #101826;
+  --color-text-muted: #57647a;
+  --color-text-faint: #8793a6;
+  --color-text-on-ink: #eef1f6;
+  --color-text-on-ink-muted: #97a3b8;
+
+  /* -- brand: deep cobalt, reads precise/analytical -- */
+  --color-primary: #24499e;
+  --color-primary-hover: #1b3878;
+  --color-primary-soft: #dde6f8;
+
+  /* -- citation accent: the "highlighter" signature color used
+     wherever a cited source is surfaced -- */
+  --color-cite: #b8791f;
+  --color-cite-hover: #96611a;
+  --color-cite-soft: #f7ecd6;
+  --color-cite-ink: #6b4712;
+
+  /* -- clause risk levels (document analysis, not lead scoring) -- */
+  --color-risk-low: #0f766e;
+  --color-risk-low-soft: #dcf0ee;
+  --color-risk-low-ink: #0b544e;
+  --color-risk-medium: #b45309;
+  --color-risk-medium-soft: #f7e6d3;
+  --color-risk-medium-ink: #7c3a06;
+  --color-risk-high: #b91c1c;
+  --color-risk-high-soft: #f8dcdc;
+  --color-risk-high-ink: #7a1313;
+
+  /* -- document processing status -- */
+  --color-status-processing: #4c5a76;
+  --color-status-processing-soft: #e4e7ef;
+  --color-status-ready: #187a4e;
+  --color-status-ready-soft: #dcf1e5;
+  --color-status-failed: #b3261e;
+  --color-status-failed-soft: #f8dcda;
+
+  /* -- eval faithfulness verdicts -- */
+  --color-verdict-faithful: #187a4e;
+  --color-verdict-faithful-soft: #dcf1e5;
+  --color-verdict-partial: #b45309;
+  --color-verdict-partial-soft: #f7e6d3;
+  --color-verdict-unfaithful: #b3261e;
+  --color-verdict-unfaithful-soft: #f8dcda;
+
+  /* -- type: serif display evokes the printed document; mono for
+     precise/numeric data (citations, metrics, ranks) -- */
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 38, 0.05), 0 1px 1px rgba(16, 24, 38, 0.03);
+  --shadow-pop: 0 16px 36px -10px rgba(16, 24, 38, 0.24), 0 4px 12px -4px rgba(16, 24, 38, 0.12);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.005em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-cite-soft);
+    color: var(--color-cite-ink);
+  }
+}
+
+@layer utilities {
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 999px;
+  }
+
+  /* citation marker: small superscript-style chip referencing a source chunk */
+  .citation-mark {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
